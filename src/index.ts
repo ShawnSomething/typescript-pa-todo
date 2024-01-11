@@ -1,14 +1,14 @@
-import {v4 as uuidv4 } from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
 
 type Task = {
-  id: string, 
-  title: string, 
-  completed: boolean, 
+  id: string
+  title: string 
+  completed: boolean 
   createdAt: Date
 }
 
 const list = document.querySelector<HTMLUListElement>("#list")
-const form = document.querySelector<HTMLFormElement>("new-task-form")
+const form = document.getElementById("new-task-form") as HTMLFormElement | null
 const input = document.querySelector<HTMLInputElement>("#new-task-title")
 
 form?.addEventListener("submit", e => {
@@ -31,6 +31,7 @@ function addListItem(task: Task) {
   const label = document.createElement("label")
   const checkbox = document.createElement("input")
   checkbox.type = "checkbox"
+  checkbox.checked = task.completed,
   label.append(checkbox, task.title)
   item.append(label)
   list?.append(item)
